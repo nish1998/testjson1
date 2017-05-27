@@ -10,7 +10,7 @@ function ajax_get_json(){
     hr.onreadystatechange = function() {
         if(hr.readyState == 4 && hr.status == 200) {
             var data = JSON.parse(hr.responseText);
-            results.innerHTML = data.main.temp;
+            results.innerHTML = data.response.main.temp;
         }
     }
     hr.send(null);
