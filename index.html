@@ -5,12 +5,12 @@
 function ajax_get_json(){
     var results = document.getElementById("results");
     var hr = new XMLHttpRequest();
-    hr.open("GET", "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=67337c56ad6e914fd845e1fb3162cc64", true);
+    hr.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=London&APPID=67337c56ad6e914fd845e1fb3162cc64", true);
     hr.setRequestHeader("Content-type", "application/json", true);
     hr.onreadystatechange = function() {
         if(hr.readyState == 4 && hr.status == 200) {
             var data = JSON.parse(hr.responseText);
-            results.innerHTML = data.cod;
+            results.innerHTML = data.main.temp;
         }
     }
     hr.send(null);
