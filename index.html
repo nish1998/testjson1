@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-function ajax_get_json(){
-    var results = document.getElementById("results");
-    var hr = new XMLHttpRequest();
-    hr.open("GET","http://api.openweathermap.org/data/2.5/weather?q=London&APPID=67337c56ad6e914fd845e1fb3162cc64", true);
-    hr.setRequestHeader("Content-type", "application/jsonp", true);
-    hr.onreadystatechange = function() {
-        if(hr.readyState == 4 && hr.status == 200) {
-            var data = JSON.parse(hr.responseText);
-            results.innerHTML = data.main.temp;
-        }
-    }
-    hr.send(null);
-    results.innerHTML = "requesting...";
-}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://api.openweathermap.org/data/2.5/weather?q=hamirpur&APPID=67337c56ad6e914fd845e1fb3162cc64',
+
+            dataType: "jsonp",
+
+            crossDomain: true,
+            success: function (data) {
+
+                console.log(data);
+
+            },
+            error: function (request, status, error) {
+
+                alert(error);
+            }
+        });
+    });
+
+    function show(data){
+
+        return "<h3>data.main.temp</h3>";
+
+    };
+</script>
 </script>
 </head>
 <body>
 <div id="results"></div>
-<script>ajax_get_json();</script>
+<script type="text/javascript">show();</script>
 </body>
 </html>
